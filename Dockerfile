@@ -2,11 +2,11 @@ FROM node:latest
 
 WORKDIR /faurecia-app
 
-COPY examples/servers/express/api-with-express-and-handlebars/package.json .
+COPY examples/servers/express/api-with-express-and-handlebars .
 
 RUN npm install -g
 
-COPY examples/servers/express/api-with-express-and-handlebars .
+RUN npm install express --save
 
 EXPOSE 3000
 
