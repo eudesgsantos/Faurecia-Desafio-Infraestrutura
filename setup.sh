@@ -38,3 +38,10 @@ kubectl expose deployment faurecia-app --type=NodePort --port=3000
  
 #creating ingress
 kubectl apply -f Ingress.yaml
+ 
+#get minikube ip
+minikubeIP=$(minikube ip)
+echo "Minikube IP "= $minikubeIP
+ 
+#assign custom local domain
+echo "$minikubeIP  challenge.local.faurecia-aptoide.com" >> /etc/hosts
