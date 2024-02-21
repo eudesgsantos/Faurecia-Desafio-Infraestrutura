@@ -1,17 +1,15 @@
 #!/bin/bash
  
+sudo apt update
+ 
 #docker setup
+echo "Installing docker"
 sudo apt install ca-certificates curl gnupg wget apt-transport-https -y
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
-echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update
+echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo usermod -aG docker $USER && newgrp docker
  
 #minikube setup
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
@@ -26,7 +24,8 @@ sudo mv kubectl /usr/local/bin/
 git clone https://github.com/nodejs/examples
  
 #starting minikube
-minikube start
+minikube start --force
+minikube addons enable ingress
  
 #building image
 minikube image build -t faurecia-app -f ./Dockerfile .
@@ -35,7 +34,6 @@ minikube image build -t faurecia-app -f ./Dockerfile .
 kubectl apply -f Deployment.yaml
 kubectl wait --for=condition=available faurecia-app --timeout=5m
 kubectl expose deployment faurecia-app --type=NodePort --port=3000
-
-#enabling and creating ingress
-minikube addons enable ingress
+ 
+#creating ingress
 kubectl apply -f Ingress.yaml
