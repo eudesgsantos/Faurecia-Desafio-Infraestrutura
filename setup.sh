@@ -19,7 +19,13 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 #kubectl setup
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
 chmod +x kubectl
-sudo mv kubectl /usr/local/bin/
+sudo mv kubectl /usr/local/bin/s
  
 #git setup 
 git clone https://github.com/nodejs/examples
+
+#build docker
+sudo docker build -t eudesgfilho/faurecia-app .
+
+#starting minikube
+minikube start
