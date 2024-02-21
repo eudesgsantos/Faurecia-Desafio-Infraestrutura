@@ -35,3 +35,5 @@ minikube image build -t faurecia-app -f ./Dockerfile .
 kubectl apply -f Deployment.yaml
 kubectl wait --for=condition=available faurecia-app --timeout=5m
 kubectl expose deployment faurecia-app --type=NodePort --port=3000
+
+minikube addons enable ingress
