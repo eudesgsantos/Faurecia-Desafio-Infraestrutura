@@ -36,4 +36,6 @@ kubectl apply -f Deployment.yaml
 kubectl wait --for=condition=available faurecia-app --timeout=5m
 kubectl expose deployment faurecia-app --type=NodePort --port=3000
 
+#enabling and creating ingress
 minikube addons enable ingress
+kubectl apply -f Ingress.yaml
