@@ -15,11 +15,15 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 #minikube setup
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
+echo "source <(minikube completion bash)" >> ~/.bashrc
+source ~/.bashrc
  
 #kubectl setup
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+source ~/.bashrc
  
 #git setup 
 git clone https://github.com/nodejs/examples
@@ -44,4 +48,4 @@ minikubeIP=$(minikube ip)
 echo "Minikube IP "= $minikubeIP
  
 #assign custom local domain
-echo "$minikubeIP  challenge.local.faurecia-aptoide.com" >> /etc/hosts
+echo "$minikubeIP  challenge.local.faurecia-aptoide.com" | sudo tee -a /etc/hosts
