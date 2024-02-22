@@ -29,7 +29,7 @@ source ~/.bashrc
 git clone https://github.com/nodejs/examples
  
 #starting minikubes
-sudo minikube start --force
+minikube start --force
 minikube addons enable ingress
  
 #building image
