@@ -8,10 +8,10 @@ Fault tolerance and availability were achieved, since the application can automa
 The implementation used Ubuntu 22.04.3 LTS with 2 cores and 4GB of RAM.
 To run the application, you only need to run the setup.sh script with root privileges, and the application will be available in the same custom local domain as the proposed solution http://challenge.local.faurecia-aptoide.com.
 
-To make modifications easier, changes can be made to the Dockerfile, Deployment.yaml and Ingress.yaml files.
+The Dockerfile, Deployment.yaml and Ingress.yaml files have been created in order to simplify modifications.
 
 To deploy new versions, the updates.sh script was created, which updates the local git repository, builds a new image and then performs a rolling deployment on minikube. It receives a parameter for the tag, an example of execution would be: 
-`sh updates.sh v2`
+`sh update.sh v2`
 Where v2 is the tag of the new image to be created and provisioned.
 
 # Faurecia Aptoide
