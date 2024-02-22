@@ -50,5 +50,6 @@ echo "Minikube IP "= $minikubeIP
 #assign custom local domain
 echo "$minikubeIP  challenge.local.faurecia-aptoide.com" | sudo tee -a /etc/hosts
 
-#acessing url 
+#acessing url
+sleep 3
 curl challenge.local.faurecia-aptoide.com
