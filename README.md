@@ -1,3 +1,19 @@
+# Solving The Challenge
+
+![Alt text](diagram.png?raw=true)
+
+To solve the challenge, ShellScript was used to deploy the application and Minikube for the infrastructure, so it was possible to obtain the main requirements requested in the activity.
+Fault tolerance and availability were achieved, since the application can automatically restart crashed pods and containers within the single node, performs rolling deployments and is available in replicas.
+
+The implementation used Ubuntu 22.04.3 LTS with 2 cores and 4GB of RAM.
+To run the application, you only need to run the setup.sh script with root privileges, and the application will be available in the same custom local domain as the proposed solution http://challenge.local.faurecia-aptoide.com.
+
+To make modifications easier, changes can be made to the Dockerfile, Deployment.yaml and Ingress.yaml files.
+
+To deploy new versions, the updates.sh script was created, which updates the local git repository, builds a new image and then performs a rolling deployment on minikube. It receives a parameter for the tag, an example of execution would be: 
+`sh updates.sh v2`
+Where v2 is the tag of the new image to be created and provisioned.
+
 # Faurecia Aptoide
 ## Infrastructure Code Challenge
 Thank you so much for taking the time to work on our code challenge. We expect it to take approx 4h to complete and would be ideal if you can send it to us within 1 week timeframe. Please don't hesitate to contact us by email with whatever question you have about it.

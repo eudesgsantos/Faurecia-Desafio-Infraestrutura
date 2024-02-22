@@ -53,3 +53,4 @@ echo "$minikubeIP  challenge.local.faurecia-aptoide.com" | sudo tee -a /etc/host
 #acessing url
 sleep 3
 curl challenge.local.faurecia-aptoide.com
+xdg-open challenge.local.faurecia-aptoide.com
